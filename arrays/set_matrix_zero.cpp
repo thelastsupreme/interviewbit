@@ -52,31 +52,31 @@ void setZeroes(vector<vector<int> > &A) {
 
 }
 //krutikas code
-void Solution::setZeroes(vector<vector<int> > &A) {
+// void Solution::setZeroes(vector<vector<int> > &A) {
 
-    vector<int> m(A.size());
-    vector<int> col;
-    int flag=0;
-    for(int i=0;i<A.size();i++)
-    {
-        for(int j=0;j<A.size();j++)
-        {
-            if(A[i][j]==0)
-            {
-                flag=1;
-                col.push_back(j);
-            }
-        }
-        if(flag)
-           { A[i]=m; flag=0;}
-    }
-    for(int i=0;i<A.size();i++)
-       for(int j=0;j<i;j++)  //limits?
-           A[i][j]=A[j][i];
-    for(int i=0;i<col.size();i++)
-        A[col[i]]=m;
+//     vector<int> m(A.size());
+//     vector<int> col;
+//     int flag=0;
+//     for(int i=0;i<A.size();i++)
+//     {
+//         for(int j=0;j<A.size();j++)
+//         {
+//             if(A[i][j]==0)
+//             {
+//                 flag=1;
+//                 col.push_back(j);
+//             }
+//         }
+//         if(flag)
+//            { A[i]=m; flag=0;}
+//     }
+//     for(int i=0;i<A.size();i++)
+//        for(int j=0;j<i;j++)  //limits?
+//            A[i][j]=A[j][i];
+//     for(int i=0;i<col.size();i++)
+//         A[col[i]]=m;
 
-}
+// }
 
 int main()
 {
