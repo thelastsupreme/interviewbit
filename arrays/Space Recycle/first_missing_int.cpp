@@ -22,7 +22,7 @@ void print(std::vector<int> const &input)
 		std::cout << input.at(i) << ' ';
 	}
 }
-//logic i used looking back is quite lenghty
+//logic i used looking back is quite lengthy
 //but count number of positive elements in the array
 //then sort them and iterate only for positive elements and just use a bool vector to set flags to true;
 //now for the element whose flag is still false is the missing element
@@ -47,7 +47,7 @@ int firstMissingPositive(vector<int> &A) {
     int i=0;
     for(i;i<countt;i++)
     {
-        if(B[i]==false)  //find a flase flag
+        if(B[i]==false)  //find a false flag
         {
             break;
         }
