@@ -1,4 +1,4 @@
-// Implement the next permutation, which rearranges numbers into the numerically next greater permutation of numbers for a given array A of size N.
+//Implement the next permutation, which rearranges numbers into the numerically next greater permutation of numbers for a given array A of size N.
 
 // If such arrangement is not possible, it must be rearranged as the lowest possible order i.e., sorted in an ascending order.
 
@@ -55,32 +55,35 @@ void print(std::vector<int> const &input)
 	}
 }
 
-vector<int>nextPermutation(vector<int> &A) {
-   int i,j,letf_l,index,temp;
-    for(i=A.size()-1;i>0;i--)
+//editorial solution best approach
+
+//logic:only important factor here is to know that the index where this change happens occurs where the element is smaller than its next
+//cause obviously there u will have an opportunity to bring the greater element forward
+void nextPermutation(vector<int> &A) {
+
+    int i, j; 
+    int len=A.size();
+    for (i = len - 2; i >= 0; i--) //start from behind and get a point where A[i]<A[i+1]
+        if (A[i] < A[i + 1])
+            break;
+
+    if (i == -1) //if i is start of the array just reverse and return
     {
-        if(A[i]>A[i-1])
-            break;             //i returns where the descending order breaks
+        reverse(A.begin(), A.end());
+        return;
     }
-    if(i==0)
-    {
-        sort(A.begin(),A.end());
-        return A ;
-    }
-    letf_l=i-1;
-    index=i;
-    temp=index;
-    for(i=A.size()-1;i>index;i--)
-    {
-        //for numbers between left_l and last element if any number is > left_l and less than index element
-        //that needs to come forward and sort the rest.
-        if(A[i]>A[letf_l] && A[i]<A[temp])
-            temp=i;      
-    }
-    int t=A[temp];
-    A[temp]=A[letf_l];
-    A[letf_l]=t;
-    letf_l++;
-    sort(A.begin()+letf_l,A.end());
-    return A;
+
+    for (j = len - 1; j > i; j--) //iterate till the index found from behind
+        if (A[j] > A[i])      //the first element greater than element is index is found
+            break;
+
+    swap(A[i], A[j]);     //exchange their positions
+    reverse(A.begin() + i + 1, A.end());     //now reverse everything after the index till the end cause those elements get a fresh start
+    return;
+}
+
+int main(){
+    vector<int>A={2,1,3,5,4};
+    nextPermutation(A);
+    print(A);
 }
