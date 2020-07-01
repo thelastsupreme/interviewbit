@@ -25,11 +25,11 @@ struct Interval {
       Interval() : start(0), end(0) {}
       Interval(int s, int e) : start(s), end(e) {}
 };
-void print(vector<Interval*>input)
+void print(vector<Interval>input)
 {
 	for (int i = 0; i < input.size(); i++) {
-		cout<<input[i]->start<<" ";
-        cout<<input[i]->end<<endl;
+		cout<<input[i].start<<" ";
+        cout<<input[i].end<<endl;
 	}
 }
 
@@ -70,19 +70,19 @@ void print(vector<Interval*>input)
 //logic : push the nbew interval and sort based on start time for all the intervals
 //now take a new op vector and compare start time of element in curr vector and end time of last 
 //inserted interval in op vector
-bool mycomp(Interval* a,Interval* b){
-     return a->start<b->start;
+bool mycomp(Interval a,Interval b){
+     return a.start<b.start;
 }
 //changed code to effectively work for pointers
-vector<Interval*> insert(vector<Interval*> &A, Interval* newInterval) {
+vector<Interval> insert(vector<Interval> &A, Interval newInterval) {
     A.push_back(newInterval);
     sort(A.begin(),A.end(),mycomp);
-    vector<Interval*> res;
+    vector<Interval> res;
     int n=A.size();
     res.push_back(A[0]);
     for(int i=1;i<n;i++){
-        if(A[i]->start<=res[res.size()-1]->end)
-         res[res.size()-1]->end=max(res[res.size()-1]->end,A[i]->end);
+        if(A[i].start<=res[res.size()-1].end)
+         res[res.size()-1].end=max(res[res.size()-1].end,A[i].end);
         else
          res.push_back(A[i]);
     }
@@ -123,21 +123,21 @@ vector<Interval*> insert(vector<Interval*> &A, Interval* newInterval) {
 
 int main()
 {
-    Interval* A=new Interval(1,2);
-    Interval* B=new Interval(3,5);
-    Interval* C=new Interval(6,7);
-    Interval* D=new Interval(8,10);
-    Interval* E=new Interval(12,16);
+    Interval A=Interval(1,2);
+    Interval B=Interval(3,5);
+    Interval C=Interval(6,7);
+    Interval D=Interval(8,10);
+    Interval E=Interval(12,16);
 
-    Interval* F=new Interval(4,9);
-    vector<Interval*>res;
+    Interval F=Interval(4,9);
+    vector<Interval>res;
     res.push_back(A);
     res.push_back(B);
     res.push_back(C);
     res.push_back(D);
     res.push_back(E);
 
-    vector<Interval*>ans=insert(res,F);
+    vector<Interval>ans=insert(res,F);
     print(ans);
 
 }
