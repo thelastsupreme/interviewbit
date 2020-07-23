@@ -1,7 +1,48 @@
+// A hotel manager has to process N advance bookings of rooms for the next season. His hotel has C rooms. Bookings contain an arrival date and a departure date. He wants to find out whether there are enough rooms in the hotel to satisfy the demand. Write a program that solves this problem in time O(N log N) .
+
+
+
+// Input Format
+// First argument is an integer array A containing arrival time of booking.
+// Second argument is an integer array B containing departure time of booking.
+// Third argument is an integer C denoting the count of rooms.
+
+
+
+// Output Format
+// Return True if there are enough rooms for N bookings else return False.
+// Return 0/1 for C programs.
+
+
+
+// Example Input
+// Input 1:
+
+//  A = [1, 3, 5]
+//  B = [2, 6, 8]
+//  C = 1
+
+
+// Example Output
+// Output 1:
+
+//  0
+
+
+// Example Explanation
+// Explanation 1:
+
+//  At day = 5, there are 2 guests in the hotel. But I have only one room.
+
 #include<iostream>
 #include<vector>
 #include<algorithm>
 using namespace std;
+
+//inital logic was to sort based on arrival time
+//then run a loop on variable t for every second and check in how many intervals does t lie in
+//and decrement j which stores the value of rooms
+//if at any point you decrement more than the room you have then return -1
 bool mycomp(pair<int,int> a,pair<int,int> b){
      return a.first<b.first;
  }
@@ -30,6 +71,12 @@ bool mycomp(pair<int,int> a,pair<int,int> b){
     return true;
 }
 */
+
+//editorial solution 
+//assign all arrival time value of 1
+//assign all departure time value of -1
+//sort based on their times
+//at any point the number of 1s exceed -1s by k return -false
 bool hotel(vector<int> &arrive, vector<int> &depart, int k) {
     vector<pair<int,int> >v;
     int n=arrive.size();
