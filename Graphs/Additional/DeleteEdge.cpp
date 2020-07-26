@@ -97,7 +97,6 @@ int dfs(int u, int p, vector < int > & A) {
 
 int deleteEdge(vector < int > & A, vector < vector < int > > & B) 
 {
-
   s = 0; //total sum of tree
   maxe = 0; //maximum product
 
