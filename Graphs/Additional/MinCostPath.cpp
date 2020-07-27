@@ -62,15 +62,18 @@
 
 //  Matrix looks like: LLLL
 //  We go right three times.
+
 #include <bits/stdc++.h>
 using namespace std;
 
 //best solution from ib
 #define tp tuple<int,int,int>
+
 bool isSafe(int i,int j,int upx,int upy) //function to stay in grid
 {
     return (i>=0)&&(i<upx)&&(j>=0)&&(j<upy);
 }
+
 int solve(int A, int B, vector<string> &C) {
     deque<tp> q;
     vector<vector<bool>> visited(A,vector<bool> (B,false));
