@@ -93,8 +93,10 @@ int solve(int A, int B, vector<string> &C) {
             int n_x=i+x.second.first,n_y=j+x.second.second;  
             if(isSafe(n_x,n_y,A,B)&&!visited[n_x][n_y])
             {
-                if(C[i][j]==x.first) q.push_front({cost,n_x,n_y});
-                else q.push_back({cost+1,n_x,n_y});
+                if(C[i][j]==x.first) //taking the path as char
+                    q.push_front({cost,n_x,n_y});
+                else 
+                    q.push_back({cost+1,n_x,n_y});
             }
         }
     }
