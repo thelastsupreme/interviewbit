@@ -73,39 +73,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//using a queue
-// int solve(int a, vector<vector<int> > &b) {
-//     vector<int> indeg(a+1,0),g[a+1];
-//         for(int i=0; i<b.size(); i++)
-//         {
-//             g[b[i][1]].push_back(b[i][0]);
-//             indeg[b[i][0]]++;
-//         }
-//         queue<int>q;
-//         for(int i=1; i<= a; i++)
-//         {
-//             if(!indeg[i])
-//             {
-//                 q.push(i);
-//             }
-//         }
-//         int count = 0;
-//         while(!q.empty())
-//         {
-//             int node = q.front();
-//             q.pop();
-//             count++;
-//             for(int i : g[node])
-//             {
-//                 indeg[i]--;
-//                 if(!indeg[i])
-//                 {
-//                     q.push(i);
-//                 }
-//             }
-//         }
-//         return !(count == a);
-// }
 
 void print(vector<int>A)
 {
@@ -114,58 +81,59 @@ void print(vector<int>A)
     cout<<endl;
 }
 
-int findd(vector<int>&parent,int i)  //basically checks if your nodes on dfs traversing end at same nodes
-{
-    if(parent[i]==i)
-        return i;
-    return parent[i]=findd(parent,parent[i]);
+// int findd(vector<int>&parent,int i)  //basically checks if your nodes on dfs traversing end at same nodes
+// {
+//     if(parent[i]==i)
+//         return i;
+//     return parent[i]=findd(parent,parent[i]);
+// }
+
+// int solve(int A, vector<vector<int> > &B) {
+//     vector<int>parent(A+1);
+//     for(int i=0;i<parent.size();i++)
+//         parent[i]=i;
+
+//     for(int i=0;i<B.size();i++)
+//     {
+//         print(parent);
+//         int u=B[i][0];
+//         int v=B[i][1];
+//         cout<<u<<" "<<v<<endl;
+//         int set_u=findd(parent,u);
+//         int set_v=findd(parent,v);
+//         cout<<set_u<<" "<<set_v<<endl;
+//         if(set_u==set_v)
+//             return 1;
+//         parent[u]=parent[v];
+//     }
+//     return 0;
+// }
+
+// method 3 using dfs
+bool dfs(int s,vector<bool> &visited,vector<vector<int>> &B) {
+    if (visited[s]) return true;
+    visited[s] = true;
+    // process node s
+    for (int i=0;i<B.size();i++) {
+        if(B[i][0]==s && dfs(B[i][1],visited,B))
+            return true;
+    }
+    visited[s]=false;
+    return false;
 }
 
 int solve(int A, vector<vector<int> > &B) {
-    vector<int>parent(A+1);
-    for(int i=0;i<parent.size();i++)
-        parent[i]=i;
-
-    for(int i=0;i<B.size();i++)
-    {
-        print(parent);
-        int u=B[i][0];
-        int v=B[i][1];
-        cout<<u<<" "<<v<<endl;
-        int set_u=findd(parent,u);
-        int set_v=findd(parent,v);
-        cout<<set_u<<" "<<set_v<<endl;
-        if(set_u==set_v)
+    int E=B.size();
+    for(int i=1;i<=A;i++){
+        vector<bool> visited(A+1,false);
+        // stack<int> dfs;
+        if(dfs(i,visited,B)){
             return 1;
-        parent[u]=parent[v];
+        }
     }
     return 0;
 }
 
-//method 3 using dfs
-// bool dfs(int s,vector<bool> &visited,vector<vector<int>> &B) {
-//     if (visited[s]) return true;
-//     visited[s] = true;
-//     // process node s
-//     for (int i=0;i<B.size();i++) {
-//         if(B[i][0]==s && dfs(B[i][1],visited,B))
-//             return true;
-//     }
-//     visited[s]=false;
-//     return false;
-// }
-
-// int solve(int A, vector<vector<int> > &B) {
-//     int E=B.size();
-//     for(int i=1;i<=A;i++){
-//         vector<bool> visited(A+1,false);
-//         // stack<int> dfs;
-//         if(dfs(i,visited,B)){
-//             return 1;
-//         }
-//     }
-//     return 0;
-// }
 int main()
 {
     vector<vector<int>> A = 

@@ -9,6 +9,7 @@ void print(vector<int> &input)
 	for (int i = 0; i < input.size(); i++) {
 		cout << input.at(i) << ' ';
 	}
+    cout<<endl;
 }
 
 void print_map(unordered_map<int,int>&map)
@@ -30,4 +31,10 @@ void print_matrix(vector<vector<int>>&matrix)
         }
         cout<<endl;
     }
+}
+
+
+int main()
+{
+    vector<int>arr={7,10,12};
 }

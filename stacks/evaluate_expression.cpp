@@ -1,4 +1,9 @@
-int Solution::evalRPN(vector<string> &A) {
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+int evalRPN(vector<string> &A) {
     int res=0;
     stack<int>s;
     int t1;
