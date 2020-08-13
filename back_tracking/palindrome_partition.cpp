@@ -1,3 +1,8 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
 //prabhaths code
 bool isPalindrome(string A) {
     string B;
@@ -36,7 +41,7 @@ void rec_f(vector<vector<string>>&res,vector<string>&temp,int curr,string A)
         }
     }
 }
-vector<vector<string> > Solution::partition(string A) {
+vector<vector<string> > partition(string A) {
     vector<vector<string>>res;
     vector<string>temp;
     rec_f(res,temp,0,A);
@@ -64,7 +69,7 @@ void helper(int n, int s, vector<vector<string>> &res,vector<string>&cur, string
         }
     }
 }
-vector<vector<string>> Solution::partition(string A)
+vector<vector<string>> partition_1(string A)
 {
     int n=A.size();
     vector<vector<string>> F;
